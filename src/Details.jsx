@@ -7,7 +7,7 @@ import noposter from './assets/noposter.jpg'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
   const Details = () => {
-  const URL = "http://www.omdbapi.com/?apikey=39cca408"
+  const URL = "https://www.omdbapi.com/?apikey=39cca408"
   const {id} = useParams()
   const [isLoading,setisLoading] = useState(true)
   const [Error,setError] = useState(null)

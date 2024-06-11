@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-const URL = "http://www.omdbapi.com/?apikey=39cca408"
+const URL = "https://www.omdbapi.com/?apikey=39cca408"
 export const ThemeContext = createContext()
 export const Mycontext = ({children})=>{   
         const [isLoading, setIsLoading] = useState(true)

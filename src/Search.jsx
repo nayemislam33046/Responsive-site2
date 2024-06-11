@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from './Home'
-
 const Search = () => {
   const {query,setQuery} = useContext(ThemeContext)
   return (
@@ -9,5 +8,4 @@ const Search = () => {
     </div>
   )
 }
-
 export default Search

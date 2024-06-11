@@ -3,8 +3,7 @@ import Search from './Search'
 import { NavLink } from 'react-router-dom'
 import { BiMenu } from 'react-icons/bi'
 import { CgClose } from 'react-icons/cg'
-
-const Navbars = () => {
+  const Navbars = () => {
   const [navbar, setNavbar] = useState("")
   const [lastScrollY, setlastScrollY] = useState(0)
   const [showMenu, setshowMenu] = useState(true)
@@ -33,7 +32,6 @@ const handleMenu = (e)=>{
                   <div className={`nvlink ${showMenu ? "hides":"shows"}`}>
                   <NavLink to='/' className="Links">Movie</NavLink>
                   <NavLink to='/' className="Links">Explore</NavLink>
-
                     </div>           
            <Search/>
           <div onClick={handleMenu} className='menuBr'>

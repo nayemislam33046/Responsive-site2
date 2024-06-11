@@ -1,16 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react'
-
 const URL = "http://www.omdbapi.com/?apikey=39cca408"
 export const ThemeContext = createContext()
-export const Mycontext = ({children})=>{
-        
+export const Mycontext = ({children})=>{   
         const [isLoading, setIsLoading] = useState(true)
         const [movie, setMovie] = useState([])
         const [error,setError] = useState({show:false,msg:""})
         const [query, setQuery] = useState("dark")
-        
-
- const fetchData = async(URL)=>{
+        const fetchData = async(URL)=>{
      setIsLoading(true)
     try{
         const res = await fetch(URL)
@@ -23,22 +19,17 @@ export const Mycontext = ({children})=>{
            setError({show:true,
             msg:data.Error
            })
-
        }
     }catch(err){
             setError(err)
     }
-
 }
-
         useEffect(()=>{
             let timerOut = setTimeout(() => {
                 fetchData(`${URL}&s=${query}`)
             }, 1000);
-
             return ()=> clearTimeout(timerOut)
         },[query])
-
     return <ThemeContext.Provider value={{isLoading,error,movie,query,setQuery}}>
         {children}
     </ThemeContext.Provider>

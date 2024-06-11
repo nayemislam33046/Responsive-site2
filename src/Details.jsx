@@ -3,13 +3,11 @@ import { useParams } from 'react-router-dom'
 import "./Details.css"
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css';
-import noposter from '../public/noposter.jpg'
+import noposter from './assets/noposter.jpg'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-
-const Details = () => {
+  const Details = () => {
   const URL = "http://www.omdbapi.com/?apikey=39cca408"
-
   const {id} = useParams()
   const [isLoading,setisLoading] = useState(true)
   const [Error,setError] = useState(null)

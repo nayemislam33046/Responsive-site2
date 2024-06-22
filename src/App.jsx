@@ -1,20 +1,15 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Data from './Data'
-import Details from './Details'
-import Search from './Search'
-import Navbars from './Navbars'
-
+import React, { useContext } from 'react'
+import "./index.css"
+import Route from './Routes/Route'
+import { ThemeProvider } from './Context/context'
 const App = () => {
+  const {state,dispatch} = useContext(ThemeProvider)
+  const darkmode = state.Darkmode
+
   return (
-    <BrowserRouter>
-        <Navbars/>
-         <Routes>
-            <Route path='/' element={<Data/>}/>
-            <Route path='/:id' element={<Details/>}/>
-         </Routes>
-    </BrowserRouter>
+    <div className={`${darkmode ?"bg-white": "bg-[rgb(22,22,24)]"}`}>
+      <Route/>
+     </div>
   )
 }
-
 export default App

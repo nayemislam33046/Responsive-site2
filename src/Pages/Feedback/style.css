@@ -1,0 +1,15 @@
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: #09B850;
+    padding-left:30px;
+    heigth:20px;
+    border-radius:10px;
+    transition:.6s;
+  }
+  .swiper-pagination-bullet {
+    background-color:gray;
+  }
+  
+  .swiper-pagination{
+    text-align:start;
+  
+  }

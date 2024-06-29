@@ -1,75 +1,94 @@
 import React, { useContext, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import logolight from "../assets/logo-light.svg"
-import logodark from "../assets/logo1.svg"
-import { ThemeProvider } from '../Context/context'
+import { Link } from "react-router-dom"
+import { ThemeProvider } from '../Context/Context'
 
 const Header = () => {
-  const [menuBtn, setMenuBtn] = useState(false)
-  const [mode, setMode] = useState(false)
-  const [navEffect, setNavEffect] = useState("")
+
+  const darkImg = "https://eduport.webestica.com/assets/images/logo-light.svg"
+
+  const [MenuToggle, setMenuToggle] = useState(false)
+  const [profile, setProfile] = useState(false)
+  const [navScroll, setNavScroll] = useState("")
+
   const {state,dispatch} = useContext(ThemeProvider)
-  const darkmode = state.Darkmode
+  const Darkmode = state.Darkmode
   const handleClick = ()=>{
-    setMenuBtn(!menuBtn)
+    setMenuToggle(!MenuToggle)
   }
-  const handleMood = ()=>{
-    setMode(!mode)
-    } 
-    const handleLightmode = ()=>{
-          dispatch({type:"Darkmode"})  
-    }
-  const handleDarkmode = ()=>{
-    dispatch({type:"Lightmode"})
+  const handleProfile = ()=>{
+    setProfile(!profile)
   }
 
-const handleScroll = (e)=>{
-  if(window.scrollY>=400){
-    setNavEffect("-top-40")
+  const handleMoon = ()=>{
+    dispatch({type:"DARKMODE"})
+    console.log("dark")
   }
-   if(window.scrollY>=1000 ){
-    setNavEffect(`w-full fixed top-0 transition-all z-20 ${darkmode?("bg-[rgba(255,255,255)]"):("bg-[rgb(22,22,24)]")}`)
-  } 
+  const handleLight = ()=>{
+    dispatch({type:"LIGHTMODE"})
+    console.log("light")
+  }
+
+const handleScroll = ()=>{
+  if (window.scrollY>=400) {
+    setNavScroll("-top-40 transition-[.6s]")
+  }
+  if (window.scrollY>=1000) {
+    setNavScroll("top-0 w-full fixed transition-[.6s]")
+  }
 }
 
 window.addEventListener("scroll",handleScroll)
   return (
-    <div className={`md:px-0 md:py-3 lg:px-[70px] ${navEffect}`}>
-        <div className='flex justify-between items-center px-6 py-4'>
-        <Link to="/">
-            <img src={darkmode?logodark:logolight} alt="logo" className={`md:w-[6rem] w-[7rem] lg:w-[9rem]`}/>
-        </Link>
-        <nav className={`lg:flex absolute ${darkmode?"bg-white":"bg-[rgb(22,22,24)]"} lg:bg-transparent transition-all ${menuBtn?"-translate-y-0":"-translate-y-96"} lg:translate-y-0 left-0 w-full lg:w-auto top-14 md:top-20 lg:top-0 lg:p-0 p-5 lg:relative`}>
-           <NavLink className={`block border-y lg:border-none leading-10  text-green-600 font-bold md:mx-2 lg:text-lg`}>Demos</NavLink>
-           <NavLink className={`block border-y lg:border-none leading-10 ${darkmode?"text-red-500 font-bold":"text-white"} md:mx-2 lg:text-lg hover:text-green-500`}>Pages</NavLink>
-           <NavLink className={`block border-y lg:border-none leading-10 ${darkmode?"text-red-500 font-bold":"text-white"} md:mx-2 lg:text-lg hover:text-green-500`}>Portfolio</NavLink>
-           <NavLink className={`block border-y lg:border-none leading-10 ${darkmode?"text-red-500 font-bold":"text-white"} md:mx-2 lg:text-lg hover:text-green-500`}>Megamenu</NavLink>
-           <NavLink className={`block border-y lg:border-none leading-10 ${darkmode?"text-red-500 font-bold":"text-white"} md:mx-2 lg:text-lg hover:text-green-500`}>Contuct Us</NavLink>
-        </nav>
+    <div className={`${navScroll} py-5 px-6 xl:py-6 flex justify-between items-center z-50 bg-black`}>
+
         <div>
-          
-      
-{/* button */}
-        <div className='md:flex lg:gap-2 md:gap-1 -z-40'>          
-       <div className='flex justify-center items-center gap-1'>
-           <div className='group'>
-           <span className={` mt-1 text-2xl cursor-pointer ${darkmode?"text-black":"text-white"} group`} onClick={handleMood}><ion-icon name="contrast-outline"></ion-icon></span>
-            <div className={`bg-[rgb(22,22,24)] absolute top-10 border rounded-lg right-20 md:right-56 lg:right-72 md:top-16 lg:top-18 px-2 py-3 hidden group-hover:block`}>
-                    <button className='text-white flex items-center gap-2 py-3 px-5 font-bold hover:bg-[rgb(24,36,32)] text-lg hover:text-[rgb(10,163,72)] rounded' onClick={handleLightmode}><ion-icon name="sunny-outline"></ion-icon> Light</button>
-                    <button className='text-white flex items-center gap-2 py-3 px-5 font-bold hover:bg-[rgb(24,36,32)] text-lg hover:text-[rgb(10,163,72)] rounded' onClick={handleDarkmode}><ion-icon name="moon-outline"></ion-icon> Dark</button>
-                    <button className='text-white flex items-center gap-2 py-3 px-5 font-bold hover:bg-[rgb(24,36,32)] text-lg hover:text-[rgb(10,163,72)] rounded'><ion-icon name="contrast-outline"></ion-icon> Auto</button>
+        <img src={darkImg } alt="logo" className='w-32'/>
+        </div>
+
+        <div className={`${Darkmode?("bg-[#1E2024]"):("bg-white")} z-50 xl:flex xl:justify-between xl:gap-40 xl:items-center absolute xl:relative top-20 xl:top-0 w-full xl:h-0 left-0 p-5 xl:p-0 -translate-y-[50rem] xl:translate-y-0 transition-all ${MenuToggle?("translate-y-0"):("")}`}>
+
+            <Link to='/' className={`text-[#066AC9] py-4 xl:py-2 px-5 xl:px-3 rounded-lg font-semibold xl:ms-2 block ${Darkmode?("bg-[#1F2C3A]"):("bg-[#E2EDF8]")}`}><i className="fa-solid fa-table-cells-large"></i> Category</Link>
+            <div className='xl:flex mt-2 xl:mt-0'>
+                <Link to="/" className={`${Darkmode?("text-[#BFC0C9]"):("text-gray-500")} xl:mx-4 font-semibold text-md xl:border-none border-t border-[#43443b] block py-3 xl:py-0`}>Demos</Link>                                
+                <Link to="/" className={`${Darkmode?("text-[#BFC0C9]"):("text-gray-500")} xl:mx-4 font-semibold text-md xl:border-none border-t border-[#43443b] block py-3 xl:py-0`}>Page</Link>
+                <Link to="/" className={`${Darkmode?("text-[#bfc0c9]"):("text-gray-500")} xl:mx-4 font-semibold text-md xl:border-none border-t border-[#43443b] block py-3 xl:py-0`}>Account</Link>
+                <Link to="/" className={`${Darkmode?("text-[#BFC0C9]"):("text-gray-500")} xl:mx-4 font-semibold text-md xl:border-none border-t border-[#43443b] block py-3 xl:py-0`}>Megamenu</Link>
+                <Link to="/" className={`${Darkmode?("text-[#BFC0C9]"):("text-gray-500")} xl:mx-4 font-semibold text-md xl:border-none border-t border-[#43443b] block py-3 xl:py-0`}><span><i className="fa-solid fa-ellipsis"></i></span></Link>
             </div>
-           </div>
-           <div className=' md:flex md:gap-1 hidden'>
-           <button className={` text-white hover:bg-[#3C3E41] md:px-2 lg:px-3 rounded md:p-1 gap-1 flex items-center ${darkmode?"bg-[rgb(22,22,24)] text-black":"bg-[#292a2c] text-white"}`}><ion-icon name="person-circle-outline"></ion-icon> Sign Up</button>
-          <button className='bg-[#089C44] rounded text-white md:px-3 md:p-1 hover:bg-green-500'>Buy Now</button>
-           </div>
-           <span className={`${darkmode?"text-black":"text-white"} mt-1 text-3xl lg:hidden`} onClick={handleClick}><ion-icon name={`${menuBtn?"close-outline":"menu-outline"}`}></ion-icon></span>  
-    </div>     
-
-
+            <div>
+                  <div>
+                  <form className={` border border-[#43443b] px-2 py-2 rounded-lg w-full ${Darkmode?("bg-[#222529]"):("bg-white")}`}>
+                       <input type="search" name="" id="" className={`${Darkmode?("bg-[#222529]"):("bg-white text-black")} text-white outline-none w-[90%] sm:w-[94%] xl:w-auto`} placeholder='Search'/>
+                       <span className={`${Darkmode?("text-white"):("text-black")} w-[5%] xl:w-auto`}><i className="fa-solid fa-magnifying-glass"></i></span>
+                   </form>
+                  </div>
+            </div>
         </div>
-        </div>
+
+        <div className='xl:ms-2 flex items-center gap-4'>
+          <span className={`text-white text-3xl xl:hidden`} onClick={handleClick}><i className={`${MenuToggle ? ("fa-solid fa-xmark"):("fa-solid fa-bars")}`}></i></span>
+           <span onClick={handleProfile}><img src="https://eduport.webestica.com/assets/images/avatar/01.jpg" alt="profile" className='w-10 rounded-full relative'/></span>           
+      
+          <div className={`${Darkmode ?("bg-[#0F0F10]"):("bg-white shadow-2xl")} absolute top-16 xl:top-20 right-6 px-5 py-3 rounded-lg transition-all ${profile?("translate-y-0 transition-all"):("translate-y-14 transition-all scale-0")} z-50`}>
+                <div className='flex gap-3 mx-4'>
+                <img src="https://eduport.webestica.com/assets/images/avatar/01.jpg" alt="profile" className='w-12 rounded-full'/>
+                  <div>
+                    <p className={`${Darkmode ? ("text-white"):("text-black")} font-bold`}>Lori Fergusion</p>
+                    <p className='text-[#747579] text-xs'>lorifurgusion123@gmail.com</p>
+                  </div>
+                </div>
+                <hr className='border border-[#43443b] my-3'/>
+                <Link to='/' className='text-[#9D9EA6] flex gap-4 items-center font-semibold hover:bg-[#0D1823] hover:text-[#066AC9] px-4 py-2 rounded-md active:text-[#066AC9] transition-[.7s] text-center'><span><i className="fa-regular fa-user"></i></span> Edit Profile</Link>
+                <Link to='/' className='text-[#9D9EA6] flex gap-4 items-center font-semibold hover:bg-[#0D1823] hover:text-[#066AC9] px-4 py-2 rounded-md active:text-[#066AC9] transition-[.7s] text-start'><span><i className="fa-solid fa-gear"></i></span> Account Setting</Link>
+                <Link to='/' className='text-[#9D9EA6] flex gap-4 items-center font-semibold hover:bg-[#0D1823] hover:text-[#066AC9] px-4 py-2 rounded-md active:text-[#066AC9] transition-[.7s] text-start'><span><i className="fa-solid fa-info ps-1"></i></span> Help</Link>
+                <Link to='/' className='text-[#9D9EA6] flex gap-4 items-center font-semibold hover:bg-[#231115] hover:text-[#D6293E] px-4 py-2 rounded-md active:text-[#066AC9] transition-[.7s] text-start'><span><i className="fa-solid fa-power-off"></i></span> Sign Up</Link>
+                <hr className='border border-[#43443b] my-3'/>
+                <div className={` rounded-md flex justify-between p-1 ${Darkmode?("bg-[#2A2C31]"):("bg-white")}`}>
+                        <button className='text-[#696A6E] hover:bg-[#2A2D40] rounded-md px-3 py-2' onClick={handleLight}><span><i className="fa-solid fa-moon"></i></span> Light</button>
+                        <button className='text-[#696A6E] hover:bg-[#2A2D40] rounded-md px-3 py-2' onClick={handleMoon}><span><i className="fa-solid fa-sun"></i></span> Dark</button>
+                        <button className='text-[#696A6E] hover:bg-[#2A2D40] rounded-md px-3 py-2'><span><i className="fa-solid fa-circle-half-stroke"></i></span> Auto</button>
+                </div>
+          </div>
         </div>
     </div>
   )

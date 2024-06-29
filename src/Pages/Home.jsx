@@ -1,26 +1,24 @@
 import React from 'react'
 import Header from '../Header/Header'
-import Homepage from './Homepage'
-import AutoCarousel from './AutoCarousel'
-import Meeting from './Meeting'
-import Service from './Service/Service'
-import Plan from './Plan'
-import Feedback from './Feedback/Feedback'
-import Footer from './Footer'
-import ArrowButton from './ArrowButton'
+import Homepage from './Homepage/Homepage'
+import Course from './Course/Course'
+import Training from './Training/Training'
+import Reviews from './Reviews/Reviews'
+import Footer from './Footer/Footer'
+import Copyright from './Footer/Copyright'
+import BacktoTop from './BacktoTop/BacktoTop'
 
 const Home = () => {
   return (
     <div>
-        <Header/>
-        <Homepage/>
-        <AutoCarousel/>
-        <Meeting/>
-        <Service/>
-        <Plan/>
-        <Feedback/>
-        <Footer/>
-        <ArrowButton/>
+      <Header/>
+      <Homepage/>
+      <Course/>
+      <Training/>
+      <Reviews/>
+      <Footer/>
+      <Copyright/>
+      <BacktoTop/>
     </div>
   )
 }

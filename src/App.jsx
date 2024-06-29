@@ -1,15 +1,14 @@
 import React, { useContext } from 'react'
-import "./index.css"
-import Route from './Routes/Route'
-import { ThemeProvider } from './Context/context'
+import Router from './Routes/Route'
+import { ThemeProvider } from './Context/Context'
+import './style.css'
 const App = () => {
-  const {state,dispatch} = useContext(ThemeProvider)
-  const darkmode = state.Darkmode
-
-  return (
-    <div className={`${darkmode ?"bg-white": "bg-[rgb(22,22,24)]"}`}>
-      <Route/>
-     </div>
+  const {state} = useContext(ThemeProvider)
+  const Darkmode = state.Darkmode
+  return (    
+  <div className={`${Darkmode?("bg-[#222529]"):("bg-white")} -z-50`}>
+         <Router />
+  </div>
   )
 }
 export default App
